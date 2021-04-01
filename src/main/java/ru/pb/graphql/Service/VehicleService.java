@@ -7,6 +7,7 @@ import ru.pb.graphql.DAO.Repository.VehicleRepository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,9 @@ public class VehicleService {
         vehicle.setType(type);
         vehicle.setModelCode(modelCode);
         vehicle.setBrandName(brandName);
-        vehicle.setLaunchDate(LocalDate.parse(launchDate));
+        if (Objects.nonNull(launchDate)) {
+            vehicle.setLaunchDate(LocalDate.parse(launchDate));
+        }
         return vehicleRepository.save(vehicle);
 
     }
